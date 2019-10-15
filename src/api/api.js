@@ -39,20 +39,66 @@ let base = "http://192.168.199.140:8500";
 //1.根据code获取用户信息
 const getUserInfoByCode = params => {
   return axios
-    .get(`${base}/person/authcode`, { params: { code: params.code, webchatid: 'gh_584399a0d868'} })
+    .get(`${base}/person/authcode`, {
+      params: { code: params.code, webchatid: "gh_584399a0d868" }
+    })
     .then(res => res.data);
 };
 
 //2.根据openId & 微信号获取用户信息
 const getUserInfoByOpenId = params => {
   return axios
-    .get(`${base}/person/getUserInfoByCode`, { params: { openId: params.openId, webchatid: 'gh_584399a0d868'} })
+    .get(`${base}/person/getUserInfoByCode`, {
+      params: { openid: params.openId, webchatid: "gh_584399a0d868" }
+    })
     .then(res => res.data);
 };
 
 //3.验证身份证号
 const checkPersonIdNumber = params => {
-    return axios.post(`${base}/person/check`, qs.stringify(params)).then(res => res.data);
+  return axios
+    .post(`${base}/person/check`, qs.stringify(params))
+    .then(res => res.data);
 };
 
-export default { getUserInfoByCode, getUserInfoByOpenId, checkPersonIdNumber }
+//4.获取可以聊天的客服信息
+const getChatableKeFuInfo = params => {
+  return axios
+    .get(`${base}/kefu/info`, {
+      params: { openid: params.openId, webchatid: "gh_584399a0d868" }
+    })
+    .then(res => res.data);
+};
+
+/**
+ * 获取消息列表
+ * @param messageListDto 查询条件
+ * @returns {AxiosPromise}
+ */
+const getMessageList = messageListDto => {
+  return request({
+    url: "/message/list",
+    method: "post",
+    data: messageListDto
+  });
+};
+/**
+ * 发送图片消息
+ */
+const sendImage = formData => {
+  return request({
+    url: "/image/uploadFile",
+    method: "post",
+    params: { imageType: "chatpicture" },
+    data: formData
+  });
+};
+
+export default {
+  getUserInfoByCode,
+  getUserInfoByOpenId,
+  checkPersonIdNumber,
+  getChatableKeFuInfo,
+  getMessageList,
+  sendImage
+};

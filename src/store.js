@@ -19,6 +19,11 @@ export default new Vuex.Store({
       "access_token": "",
       "headimgurl": "",
       "result": 0
+    },
+    kefu: {
+      "id": 0,
+      "nickname": "",
+      "avatar": "",
     }
   },
   mutations: {
