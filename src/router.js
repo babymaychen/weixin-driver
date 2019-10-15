@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+const Personal = () => import('./views/Personal.vue')
+const IDCard = () => import('./views/IDCard.vue')
+const IDCardForm = () => import('./views/IDCardForm.vue')
+const Chat = () => import('./views/Chat.vue')
 
 Vue.use(Router)
 
@@ -14,12 +18,24 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+      path: '/personal',
+      name: 'personal',
+      component: Personal,
+    },
+    {
+      path: '/idcard',
+      name: 'idcard',
+      component: IDCard,
+    },
+    {
+      path: '/idcardForm',
+      name: 'idcardForm',
+      component: IDCardForm,
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: Chat,
+    },
   ]
 })

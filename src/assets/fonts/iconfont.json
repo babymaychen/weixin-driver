@@ -1,0 +1,58 @@
+{
+  "id": "1445276",
+  "name": "wx-driver",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1288919",
+      "name": "plus",
+      "font_class": "plus",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "2380554",
+      "name": "表情",
+      "font_class": "biaoqing",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "4174871",
+      "name": "科目",
+      "font_class": "kemu",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "8286243",
+      "name": "身份证",
+      "font_class": "credentials_icon-copy",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9889473",
+      "name": "图片",
+      "font_class": "picture",
+      "unicode": "e71b",
+      "unicode_decimal": 59163
+    },
+    {
+      "icon_id": "10059407",
+      "name": "mail",
+      "font_class": "mail",
+      "unicode": "e96e",
+      "unicode_decimal": 59758
+    },
+    {
+      "icon_id": "10262038",
+      "name": "设 置",
+      "font_class": "shezhi",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    }
+  ]
+}
