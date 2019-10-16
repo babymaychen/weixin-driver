@@ -10,34 +10,23 @@
       >
         <ul>
           <template v-for="item in records">
+            <div class="time" :key="item.id">
+              <cite>
+                <i>{{item.createdAt}}</i>
+              </cite>
+            </div>
             <li class="chat-mine" v-if="isOneself(item)" :key="item.id">
               <div class="chat-user">
                 <img :src="person.headimgurl" />
-              </div>
-              <div class="time">
-                <cite>
-                  <i>{{item.createdAt}}</i>
-                  {{person.nickname}}
-                </cite>
               </div>
               <div class="chat-text" v-if="item.type === '1'" v-html="replaceFace(item.content)"></div>
               <div class="chat-text" v-else-if="item.type === '2'">
                 <img :src="item.content" class="image" alt="聊天图片" />
               </div>
             </li>
-            <!-- 系统提示 -->
-            <div v-if="item.type === '10000'" class="time system" :key="item.id">
-              <span v-html="item.content" />
-            </div>
-            <li class="chat-else" :key="item.id">
+            <li class="chat-else" v-else :key="item.id">
               <div class="chat-user">
-                <img src="@/assets/image/default.png" />
-              </div>
-              <div class="time">
-                <cite>
-                  {{kefu.nickname}}
-                  <i>{{item.createdAt}}</i>
-                </cite>
+                <img :src="kefu.avatar" />
               </div>
               <div class="chat-text" v-if="item.type === '1'" v-html="replaceFace(item.content)"></div>
               <div class="chat-text" v-else-if="item.type === '2'">
@@ -233,7 +222,6 @@ export default {
     if (window.WebSocket) {
       // socket
       this.socket = new WebSocket("ws://localhost:9999/chat");
-      console.log(this.socket);
       this.socket.binaryType = "arraybuffer";
 
       // 接收到消息
@@ -527,10 +515,9 @@ export default {
 
 .chatlist ul li {
   position: relative;
-  /*font-size: 0;*/
   margin-bottom: 10px;
   padding-left: 60px;
-  min-height: 68px;
+  min-height: 50px;
 }
 
 .chat-mine .chat-user {
@@ -557,7 +544,11 @@ export default {
 }
 
 .time {
-  width: 100%;
+  top: -25px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  margin: 5px auto;
 }
 
 cite {
