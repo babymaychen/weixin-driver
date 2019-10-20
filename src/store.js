@@ -24,9 +24,15 @@ export default new Vuex.Store({
       "id": 0,
       "nickname": "",
       "avatar": "",
+    },
+    chat: {
+      isLoadSuccess: false, // 是否连接及取得数据成功
     }
   },
   mutations: {
+    changeLoadStatus(state) {
+      state.isLoadSuccess = !state.isLoadSuccess;
+    },
     removeIdCard(state) {
       state.person.id_number = "";
     },

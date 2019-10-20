@@ -64,8 +64,8 @@ const checkPersonIdNumber = params => {
 //4.获取可以聊天的客服信息
 const getChatableKeFuInfo = params => {
   return axios
-    .get(`${base}/kefu/info`, {
-      params: { openid: params.openId, webchatid: "gh_584399a0d868" }
+    .get(`${base}/allocation/service`, {
+      params: { openid: 'okxmVs7UtFd-FICL48v53gWvDdTc', webchatid: "gh_584399a0d868" }
     })
     .then(res => res.data);
 };

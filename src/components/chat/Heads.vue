@@ -1,5 +1,5 @@
 <template>
-  <section class="top">
+  <section class="top" v-if="chat.isLoadedSuccess">
     <img class="head" :src="kefu.avatar" />
     <span class="name">客服 -- {{kefu.nickname}}</span>
     <!--fa fa-volume-off-->
@@ -10,7 +10,7 @@
 import { mapState } from "vuex";
 export default {
   name: "heads",
-  computed: mapState(["kefu"])
+  computed: mapState(["kefu", "chat"])
 };
 </script>
 

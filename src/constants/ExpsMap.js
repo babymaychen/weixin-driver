@@ -35,7 +35,7 @@ const EXPS = new Map([
     ['/:,@x', { file: '133.gif', code: '/:,@x', title: '秘密', reg:/\/:,@x/g }],
     ['/:,@@', { file: '134.gif', code: '/:,@@', title: '乱', reg:/\/:,@@/g }],
     ['/::8', { file: '135.gif', code: '/::8', title: '疯', reg:/\/::8/g }],
-    ['/:,@!', { file: '136.gif', code: '/:, @!', title: '哀', reg:/\/:,@!/g],
+    ['/:,@!', { file: '136.gif', code: '/:, @!', title: '哀', reg:/\/:,@!/g }],
     ['/:!!!', { file: '137.gif', code: '/:!!!', title: '鬼', reg:/\/:!!!/g }],
     ['/:xx', { file: '138.gif', code: '/:xx', title: '打击', reg:/\/:xx/g }],
     ['/:bye', { file: '139.gif', code: '/:bye', title: 'bye', reg:/\/:bye/g }],
@@ -43,14 +43,14 @@ const EXPS = new Map([
     ['/:dig', { file: '141.gif', code: '/:dig', title: '抠', reg:/\/:dig/g }],
     ['/:handclap', { file: '142.gif', code: '/:handclap', title: '鼓掌', reg:/\/:handclap/g }],
     ['/:&-(', { file: '143.gif', code: '/:&-(', title: '糟糕', reg:/\/:\&-\(/g }],
-    ['/:B-)', { file: '144.gif', code: '/:B-)', title: '恶搞', reg:/\/:B-)/g }],
+    ['/:B-)', { file: '144.gif', code: '/:B-)', title: '恶搞', reg:/\/:B-\)/g }],
     ['/:<@', { file: '145.gif', code: '/:<@', title: '什么', reg:/\/:<@/g }],
     ['/:@>', { file: '146.gif', code: '/:@>', title: '什么', reg:/\/:@>/g }],
     ['/::-O', { file: '147.gif', code: '/::-O', title: '累', reg:/\/::-O/g }],
     ['/:>-|', { file: '148.gif', code: '/:>-|', title: '看', reg:/\/:>-|/g }],
     ['/:P-(', { file: '149.gif', code: '/:P-(', title: '难过', reg:/\/:P-\(/g }],
     ['/::\'|', { file: '150.gif', code: '/::\'|', title: '难过', reg:/\/::\'|/g }],
-    ['/:X-)', { file: '151.gif', code: '/:X-)', title: '坏', reg:/\/:X-)/g }],
+    ['/:X-)', { file: '151.gif', code: '/:X-)', title: '坏', reg:/\/:X-\)/g }],
     ['/::*', { file: '152.gif', code: '/::*', title: '亲', reg:/\/::*/g }],
     ['/:@x', { file: '153.gif', code: '/:@x', title: '吓', reg:/\/:@x/g }],
     ['/:8*', { file: '154.gif', code: '/:8*', title: '可怜', reg:/\/:8*/g }],
@@ -82,7 +82,7 @@ const EXPS = new Map([
     ['/:weak', { file: '180.gif', code: '/:weak', title: '贬低', reg:/\/:weak/g }],
     ['/:share', { file: '181.gif', code: '/:share', title: '握手', reg:/\/:share/g }],
     ['/:v', { file: '182.gif', code: '/:v', title: '剪刀手', reg:/\/:v/g }],
-    ['/:@)', { file: '183.gif', code: '/:@)', title: '抱拳', reg:/\/:@)/g }],
+    ['/:@)', { file: '183.gif', code: '/:@)', title: '抱拳', reg:/\/:@\)/g }],
     ['/:jj', { file: '184.gif', code: '/:jj', title: '勾引', reg:/\/:jj/g }],
     ['/:@@', { file: '185.gif', code: '/:@@', title: '拳头', reg:/\/:@@/g }],
     ['/:bad', { file: '186.gif', code: '/:bad', title: '小拇指', reg:/\/:bad/g }],
@@ -99,5 +99,5 @@ const EXPS = new Map([
     ['/:turn', { file: '197.gif', code: '/:turn', title: '背着', reg:/\/:turn/g }],
     ['/:skip', { file: '198.gif', code: '/:skip', title: '伸手', reg:/\/:skip/g }],
     ['/:oY', { file: '199.gif', code: '/:oY', title: '耍帅', reg:/\/:oY/g }]
-
-])
+]);
+export default EXPS;
