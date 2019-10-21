@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 <script>
@@ -8,6 +8,11 @@ import api from "@/api/api";
 import { mapMutations } from "vuex";
 export default {
   created() {
+    console.log(222);
+    localStorage.setItem("titleName", "test");
+    window.onbeforeunload = function() {
+      localStorage.removeItem("titleName");
+    };
     // const code = this.getUrlParams("code"),
     //   openId = window.localStorage.getItem("openId");
     // if (openId) {
@@ -34,7 +39,7 @@ export default {
       if (r != null) return decodeURI(r[2]);
       return null;
     },
-    ...mapMutations(['updateUser'])
+    ...mapMutations(["updateUser"])
   }
 };
 </script>

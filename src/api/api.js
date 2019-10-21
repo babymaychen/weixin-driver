@@ -70,6 +70,15 @@ const getChatableKeFuInfo = params => {
     .then(res => res.data);
 };
 
+//4.获取jssdk配置信息
+const getJSSDKConfig = params => {
+  return axios
+    .get(`${base}/allocation/service`, {
+      params: { openid: 'okxmVs7UtFd-FICL48v53gWvDdTc', webchatid: "gh_584399a0d868" }
+    })
+    .then(res => res.data);
+};
+
 /**
  * 获取消息列表
  * @param messageListDto 查询条件
@@ -100,5 +109,6 @@ export default {
   checkPersonIdNumber,
   getChatableKeFuInfo,
   getMessageList,
+  getJSSDKConfig,
   sendImage
 };

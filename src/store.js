@@ -25,11 +25,17 @@ export default new Vuex.Store({
       "nickname": "",
       "avatar": "",
     },
+    jssdk: {
+      init: false
+    },
     chat: {
       isLoadSuccess: false, // 是否连接及取得数据成功
     }
   },
   mutations: {
+    changeJSSDKInitState(state, status) {
+      state.jssdk.init = status;
+    },
     changeLoadStatus(state) {
       state.isLoadSuccess = !state.isLoadSuccess;
     },
