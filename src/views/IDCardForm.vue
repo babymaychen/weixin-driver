@@ -26,6 +26,57 @@
               </button>
             </div>
           </div>
+
+          <div class="weui-cell" ref="idCardCell">
+            <div class="weui-cell__hd">
+              <label class="weui-label">姓名</label>
+            </div>
+            <div class="weui-cell__bd">
+              <input
+                ref="nickname"
+                class="weui-input"
+                autofocus
+                type="text"
+                required
+                placeholder="您的姓名"
+                v-model="form.nickname"
+              />
+              <button
+                id="js_input_clear"
+                class="weui-btn_reset weui-btn_icon weui-btn_input-clear"
+                @click="clearIdCard"
+              >
+                <i class="weui-icon-clear"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="weui-cell" ref="idCardCell">
+            <div class="weui-cell__hd">
+              <label class="weui-label">手机号</label>
+            </div>
+            <div class="weui-cell__bd">
+              <input
+                ref="phone"
+                class="weui-input"
+                autofocus
+                type="text"
+                required
+                placeholder="手机号"
+                v-model="form.phone"
+              />
+              <button
+                id="js_input_clear"
+                class="weui-btn_reset weui-btn_icon weui-btn_input-clear"
+                @click="clearIdCard"
+              >
+                <i class="weui-icon-clear"></i>
+              </button>
+            </div>
+          </div>
+
+
+
         </div>
       </div>
     </div>
@@ -92,7 +143,7 @@ export default {
         this.$weui.form.validate("#form", function(error) {
           if (!error) {
             var loading = _this.$weui.loading("提交中...");
-            api.checkPersonIdNumber({webchatid: _this.person.webchatid, openid: _this.person.openid, id_number: _this.form.idCard}).then(data => {
+            api.checkPersonIdNumber({wechatid: _this.person.wechatid, openid: _this.person.openid, id_number: _this.form.idCard, phone: _this.form.phone, nickname: _this.form.nickname}).then(data => {
               console.log(data)
               if (data) {
                 loading.hide();
@@ -103,8 +154,11 @@ export default {
                 loading.hide();
                 _this.$weui.toast("绑定失败", 3000);
               }
-            }).catch(err => console.log(err));
+            }).catch(err => { 
+              loading.hide();
+              console.log(err)});
           }
+          // loading.hide();
         });
       }
     },

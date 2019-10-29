@@ -20,7 +20,7 @@
         <div class="weui-btn plusContainer">
           <span class="icon iconfont">&#xe610;</span>
         </div>
-        <span class="addText">添加身份证</span>
+        <span class="addText">添加个人信息</span>
       </router-link>
     </div>
   </div>

@@ -8,29 +8,29 @@ import api from "@/api/api";
 import { mapMutations } from "vuex";
 export default {
   created() {
-    console.log(222);
+    // console.log(222);
     localStorage.setItem("titleName", "test");
     window.onbeforeunload = function() {
       localStorage.removeItem("titleName");
     };
-    // const code = this.getUrlParams("code"),
-    //   openId = window.localStorage.getItem("openId");
-    // if (openId) {
-    //   this.$store.commit("updateUser", openId);
-    // } else if (code) {
-    //   api.getUserInfoByCode({code})
-    //     .then(data => {
-    //       console.log(data)
-    //       this.updateUser(data)
-    //     })
-    //     .catch(err => console.log(err));
-    // }
-    // window.addEventListener("pageshow", function(e) {
-    //   // 通过persisted属性判断是否存在 BF Cache
-    //   if (/iPhone|mac|iPod|iPad/i.test(navigator.userAgent) && e.persisted) {
-    //     location.reload();
-    //   }
-    // });
+    const code = this.getUrlParams("code"),
+      openId = window.localStorage.getItem("openId");
+    if (openId) {
+      this.$store.commit("updateUser", openId);
+    } else if (code) {
+      api.getUserInfoByCode({code})
+        .then(data => {
+          console.log(data)
+          this.updateUser(data)
+        })
+        .catch(err => console.log(err));
+    }
+    window.addEventListener("pageshow", function(e) {
+      // 通过persisted属性判断是否存在 BF Cache
+      if (/iPhone|mac|iPod|iPad/i.test(navigator.userAgent) && e.persisted) {
+        location.reload();
+      }
+    });
   },
   methods: {
     getUrlParams(name) {

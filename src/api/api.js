@@ -3,7 +3,8 @@ import qs from "qs";
 import VueCookies from "vue-cookies";
 
 // let base = "http://test11111.free.idcfengye.com";
-let base = "http://192.168.199.140:8500";
+// let base = "http://192.168.0.153:8500";
+let base = "http://bkswxsdk.114wbn.com";
 // http request 拦截器
 // axios.interceptors.request.use(
 //   config => {
@@ -40,7 +41,7 @@ let base = "http://192.168.199.140:8500";
 const getUserInfoByCode = params => {
   return axios
     .get(`${base}/person/authcode`, {
-      params: { code: params.code, webchatid: "gh_584399a0d868" }
+      params: { code: params.code, wechatid: "gh_584399a0d868" }
     })
     .then(res => res.data);
 };
@@ -49,7 +50,7 @@ const getUserInfoByCode = params => {
 const getUserInfoByOpenId = params => {
   return axios
     .get(`${base}/person/getUserInfoByCode`, {
-      params: { openid: params.openId, webchatid: "gh_584399a0d868" }
+      params: { openid: params.openId, wechatid: "gh_584399a0d868" }
     })
     .then(res => res.data);
 };
@@ -58,14 +59,16 @@ const getUserInfoByOpenId = params => {
 const checkPersonIdNumber = params => {
   return axios
     .post(`${base}/person/check`, qs.stringify(params))
+    // .post(`${base}/person/check`, qs.stringify(params))
     .then(res => res.data);
+    
 };
 
 //4.获取可以聊天的客服信息
 const getChatableKeFuInfo = params => {
   return axios
     .get(`${base}/allocation/service`, {
-      params: { openid: 'okxmVs7UtFd-FICL48v53gWvDdTc', webchatid: "gh_584399a0d868" }
+      params: { openid: 'okxmVs7UtFd-FICL48v53gWvDdTc', wechatid: "gh_584399a0d868" }
     })
     .then(res => res.data);
 };
@@ -74,7 +77,7 @@ const getChatableKeFuInfo = params => {
 const getJSSDKConfig = params => {
   return axios
     .get(`${base}/allocation/service`, {
-      params: { openid: 'okxmVs7UtFd-FICL48v53gWvDdTc', webchatid: "gh_584399a0d868" }
+      params: { openid: 'okxmVs7UtFd-FICL48v53gWvDdTc', wechatid: "gh_584399a0d868" }
     })
     .then(res => res.data);
 };

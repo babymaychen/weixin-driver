@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     person: {
       "id": 0,
-      "webchatid": "",
+      "wechatid": "",
       "subscribe": 0,
       "is_friend": 0,
       "openid": "",
