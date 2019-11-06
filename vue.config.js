@@ -1,6 +1,6 @@
 module.exports = {
     devServer: {
-        sockHost: 'bkswxauth.114wbn.com',
+        // sockHost: 'bkswxauth.114wbn.com',
         disableHostCheck: true,
         port: 80,
     }

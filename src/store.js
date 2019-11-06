@@ -33,11 +33,14 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setKefuInfo(state, info) {
+      state.kefu = info;
+    },
     changeJSSDKInitState(state, status) {
       state.jssdk.init = status;
     },
     changeLoadStatus(state) {
-      state.isLoadSuccess = !state.isLoadSuccess;
+      state.chat.isLoadSuccess = !state.chat.isLoadSuccess;
     },
     removeIdCard(state) {
       state.person.id_number = "";

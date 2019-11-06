@@ -1,5 +1,5 @@
 <template>
-  <div v-if="chat.isLoadedSuccess">
+  <div v-if="chat.isLoadSuccess">
     <section class="chatlist" :class="showSelBox>0?'chatlist-bottom-collapse':'chatlist-bottom'">
       <mt-loadmore
         :top-method="loadTop"
@@ -114,6 +114,9 @@ export default {
         this.scrollToBottom();
         this.focusTxtContent();
       }
+    },
+    chat(val) {
+      console.log(val);
     }
   },
   created() {
@@ -131,7 +134,7 @@ export default {
     const _this = this;
     if (window.WebSocket) {
       // socket
-      this.socket = new WebSocket("ws://192.168.199.140:9999/chat");
+      this.socket = new WebSocket("ws://192.168.0.110:9999/chat");
       this.socket.binaryType = "arraybuffer";
 
       // 接收到消息
@@ -156,13 +159,12 @@ export default {
         _this.loginNetty();
         // 获取客服信息
         _this.getkefuInfo();
-        
       };
 
       // 连接关闭
       this.socket.onclose = function(event) {
         Indicator.close();
-        _this.showErrorAlert('连接关闭');
+        _this.showErrorAlert("连接关闭");
         console.log(`连接关闭 ${JSON.stringify(event)}`);
       };
 
@@ -170,17 +172,17 @@ export default {
       this.socket.onerror = function(event) {
         Indicator.close();
         console.log(`连接错误 ${JSON.stringify(event)}`);
-        _this.showErrorAlert('连接错误')
+        _this.showErrorAlert("连接错误");
       };
     } else {
       Indicator.close();
-      _this.showErrorAlert('当前浏览器不支持WebSocket')
+      _this.showErrorAlert("当前浏览器不支持WebSocket");
     }
 
     // 刷新浏览器
     window.onbeforeunload = function() {
       if (!window.WebSocket) {
-        _this.showErrorAlert('当前浏览器不支持WebSocket');
+        _this.showErrorAlert("当前浏览器不支持WebSocket");
         return;
       }
 
@@ -208,14 +210,19 @@ export default {
     },
     // 获得聊天客服信息
     getkefuInfo() {
-      api.getChatableKeFuInfo({ openId: this.person.openid }).then(data => {
-        console.log(data);
-        this.changeLoadStatus();
-        Indicator.close();
-      }).catch(err => {
-        this.howErrorAlert(err.message)
-        Indicator.close();
-      });
+      api
+        .getChatableKeFuInfo({ openId: "okxmVs9hw5GfjSOa-zwZAzxETbJg" })
+        .then(data => {
+          console.log(data);
+          const { id, nickname, avatar } = data.data;
+          this.setKefuInfo({ id, nickname, avatar });
+          this.changeLoadStatus();
+          Indicator.close();
+        })
+        .catch(err => {
+          this.howErrorAlert(err.message);
+          Indicator.close();
+        });
     },
     // 事件监听
     listenEvent() {
@@ -274,8 +281,8 @@ export default {
     // 登录
     loginNetty() {
       const data = {
-        username: "test1111",
-        openId: this.person.openid
+        username: "4"
+        // openId: this.person.openid
       };
       this.sendPacket(createPacket(data, Command.LOGIN_REQUEST));
     },
@@ -285,7 +292,7 @@ export default {
       const data = {
         content: this.content,
         type: 1,
-        toUserId: this.kefu.id
+        toUserId: 7
       };
       this.sendPacket(createPacket(data, Command.MESSAGE_REQUEST));
       this.content = "";
@@ -402,7 +409,7 @@ export default {
         this.$refs.loadmore.onTopLoaded(id);
       }, 1500);
     },
-    ...mapMutations(["changeLoadStatus"])
+    ...mapMutations(["changeLoadStatus", "setKefuInfo"])
   }
 };
 </script>

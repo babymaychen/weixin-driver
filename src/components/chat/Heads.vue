@@ -1,5 +1,5 @@
 <template>
-  <section class="top" v-if="chat.isLoadedSuccess">
+  <section class="top" v-if="chat.isLoadSuccess">
     <img class="head" :src="kefu.avatar" />
     <span class="name">客服 -- {{kefu.nickname}}</span>
     <!--fa fa-volume-off-->

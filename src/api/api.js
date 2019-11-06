@@ -1,10 +1,41 @@
 import axios from "axios";
 import qs from "qs";
-import VueCookies from "vue-cookies";
+import { getToken } from '@/utils/auth'
 
 // let base = "http://test11111.free.idcfengye.com";
-// let base = "http://192.168.0.153:8500";
-let base = "http://bkswxsdk.114wbn.com";
+let base = "http://127.0.0.1:8080";
+// let base = "http://bkswxsdk.114wbn.com";
+
+// 创建axios实例
+const service = axios.create({
+  baseURL: base,
+  withCredentials: false,
+  timeout: 5000,
+  responseType: 'json',
+  headers: {
+    'Content-Type': 'application/json; charset=UTF-8'
+  }
+})
+
+// request拦截器
+service.interceptors.request.use(config => {
+  const token = getToken()
+  if (token) {
+    config.headers['Authorization'] = 'Bearer ' + token
+  }
+  const method = config.method.toLocaleLowerCase()
+  if (method === 'get' && config.data) {
+    config.url += '?' + Qs.stringify(config.data)
+  }
+  return config
+}, error => {
+  console.log(`请求错误=${JSON.stringify(error)}`)
+  return Promise.reject(error)
+})
+
+
+
+
 // http request 拦截器
 // axios.interceptors.request.use(
 //   config => {
@@ -61,16 +92,16 @@ const checkPersonIdNumber = params => {
     .post(`${base}/person/check`, qs.stringify(params))
     // .post(`${base}/person/check`, qs.stringify(params))
     .then(res => res.data);
-    
+
 };
 
 //4.获取可以聊天的客服信息
 const getChatableKeFuInfo = params => {
-  return axios
-    .get(`${base}/allocation/service`, {
-      params: { openid: 'okxmVs7UtFd-FICL48v53gWvDdTc', wechatid: "gh_584399a0d868" }
-    })
-    .then(res => res.data);
+  return service({
+    url: base + '/allocation/service',
+    method: 'get',
+    params: { openid: params.openId, wechatid: "gh_584399a0d868" }
+  }).then(res => res.data);
 };
 
 //4.获取jssdk配置信息
@@ -82,13 +113,25 @@ const getJSSDKConfig = params => {
     .then(res => res.data);
 };
 
+//5.向客服后端获取token
+const getTokenFromKeFu = params => {
+  return axios.post(`http://localhost:8080/auth/visitor`, params).then(res => res.data);
+}
+//6.获取当前用户的信息
+const getPersonInfo = params => {
+  return service({
+    url: base + '/visitor/info',
+    method: 'get'
+  }).then(res => res.data);
+}
+
 /**
  * 获取消息列表
  * @param messageListDto 查询条件
  * @returns {AxiosPromise}
  */
 const getMessageList = messageListDto => {
-  return request({
+  return service({
     url: "/message/list",
     method: "post",
     data: messageListDto
@@ -98,7 +141,7 @@ const getMessageList = messageListDto => {
  * 发送图片消息
  */
 const sendImage = formData => {
-  return request({
+  return service({
     url: "/image/uploadFile",
     method: "post",
     params: { imageType: "chatpicture" },
@@ -113,5 +156,7 @@ export default {
   getChatableKeFuInfo,
   getMessageList,
   getJSSDKConfig,
+  getTokenFromKeFu,
+  getPersonInfo,
   sendImage
 };
